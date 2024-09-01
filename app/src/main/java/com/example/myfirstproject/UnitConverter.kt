@@ -1,4 +1,5 @@
 package com.example.myfirstproject
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -16,10 +18,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -55,6 +60,16 @@ fun UnitConverter() {
     val conversionFactor = remember { mutableDoubleStateOf(1.0) }
     val outputConversionFactor = remember { mutableDoubleStateOf(1.0) }
 
+    //list to store the converted values
+    val conversionHistory = remember { mutableStateListOf<String>() }
+
+    // State to control the pop-up
+    var showHistoryDialog by remember { mutableStateOf(false) }
+
+
+    //to control the phone mode
+    val isDarkTheme = isSystemInDarkTheme()
+
 
     fun convertUnits() {
 
@@ -68,6 +83,14 @@ fun UnitConverter() {
 
             val result = (inputValueDouble * conversionFactor.doubleValue * 100.0 / outputConversionFactor.doubleValue).roundToInt() / 100.0
             outputValue = result.toString()
+
+            // Adiciona o resultado ao histórico
+            val historyEntry = "$inputValue $inputUnit = $outputValue $outputUnit"
+
+            // Adiciona ao histórico apenas se a entrada não existir
+            if (historyEntry !in conversionHistory && !inputValue.isEmpty()) {
+                conversionHistory.add(historyEntry)
+            }
         }
     }
 
@@ -83,10 +106,10 @@ fun UnitConverter() {
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Blue,
-                unfocusedBorderColor = Color.Black,
+                unfocusedBorderColor = if(isDarkTheme) Color.White else Color.Black,
                 cursorColor = Color.Black,
                 focusedLabelColor = Color.Blue,
-                unfocusedLabelColor = Color.Black,),
+                unfocusedLabelColor = if(isDarkTheme) Color.White else Color.Black,),
 
             //NOT ALLOW CHANGE OF SPACE
             singleLine = true,
@@ -246,12 +269,52 @@ fun UnitConverter() {
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
-        // Mostra o resultado da conversãosim m
-        Text("Converted Value: $outputValue $outputUnitResult",
-            style = resultTextStyle)
+
+        // Mostra o resultado da conversão
+        Text("Converted Value: $outputValue $outputUnitResult", style = resultTextStyle)
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        // Botão para mostrar o histórico em um pop-up
+        Button(onClick = { showHistoryDialog = true }) { Text("Show History") }
+
+        if (showHistoryDialog){
+
+            if(!conversionHistory.isEmpty()) {
+            AlertDialog(onDismissRequest = { showHistoryDialog = false},
+                title = {Text(text = "Conversion History")},
+
+                text = {// Exibindo o histórico de conversões dentro do AlertDialog
+                    Column {conversionHistory.forEach { entry -> Text(entry)}}
+                },
+
+                confirmButton = {TextButton(onClick = {showHistoryDialog = false}) {Text("Close")}},
+
+                dismissButton = {
+                    TextButton(onClick = {
+                        conversionHistory.clear()
+                        showHistoryDialog = false
+                    })
+                    { Text("Clear History") }
+                })
+
+        } else {
+
+                // Mostrar diálogo que a lista está vazia
+                AlertDialog(onDismissRequest = { showHistoryDialog = false },
+                    title = { Text(text = "Conversion History") },
+                    text = { Text("The conversion history is empty.") },
+                    confirmButton = {TextButton(onClick = { showHistoryDialog = false }) {
+                            Text("Close")}
+                    })
+                // Usando LaunchedEffect para fechar automaticamente após 5 segundos
+                LaunchedEffect(Unit) {
+                    kotlinx.coroutines.delay(3000) // Espera 5 segundos
+                    showHistoryDialog = false // Fecha o diálogo
+                }
+        }
+        }
     }
-
-
 }
 
 

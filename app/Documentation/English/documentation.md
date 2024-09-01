@@ -59,42 +59,104 @@ The main composable function is `UnitConverter`, which encapsulates the entire u
             - **DropdownMenuItem**: Each item represents a unit of measurement. Clicking an item sets the output unit and its conversion factor, and triggers conversion.
     - **Text**: Displays the converted value and the result unit.
 
+    The UI dynamically adjusts to the device's light or dark mode, ensuring that the application's interface is readable and visually appealing in both themes.
+
 ### Preview
 
 - **`UnitConverterPreview`**: A preview function annotated with `@Preview`, which allows you to visualize the `UnitConverter` composable in the IDE with a sample background.
 
-### TODO
+#### Implementing the History Dialog
 
-- **Historic Converted Values**: There is a placeholder comment indicating the intention to add functionality for storing and displaying historical conversion values.
+1. **Display History**: When the user presses the button to show the history, an `AlertDialog` appears, listing all past conversion entries. The dialog contains two buttons:
+    - **Close Button**: Closes the dialog without making changes.
+    - **Clear History Button**: Clears all entries from the history and closes the dialog.
 
-## Usage
+2. **Handling Empty History**: If the history is empty, a different `AlertDialog` is shown to inform the user that there are no entries. This dialog automatically closes after a short delay.
 
-1. **Launch the Application**: Open the application on your Android device or emulator.
+Here is the implementation snippet for showing and managing the history dialog:
 
-2. **Input Value**: Enter the value you want to convert in the text field labeled "Enter the value".
+```kotlin
+if (showHistoryDialog) {
+    if (conversionHistory.isEmpty()) {
+        AlertDialog(
+            onDismissRequest = { showHistoryDialog = false },
+            title = { Text(text = "No History") },
+            text = { Text("The conversion history is empty.") },
+            confirmButton = {
+                TextButton(onClick = { showHistoryDialog = false }) {
+                    Text("Close")
+                }
+            }
+        )
+        LaunchedEffect(Unit) {
+            kotlinx.coroutines.delay(3000) // Waits 3 seconds
+            showHistoryDialog = false // Closes the dialog
+        }
+    } else {
+        AlertDialog(
+            onDismissRequest = { showHistoryDialog = false },
+            title = { Text(text = "Conversion History") },
+            text = {
+                Column {
+                    conversionHistory.forEach { entry -> Text(entry) }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showHistoryDialog = false }) {
+                    Text("Close")
+                    
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    conversionHistory.clear()
+                    showHistoryDialog = false
+                }) {
+                    Text("Clear History")
+                }
+            }
+        )
+    }
+}
+```
 
-3. **Select Input Unit**: Tap the dropdown menu next to the input unit button to select the unit of measurement for the input value.
+## Uso
 
-4. **Select Output Unit**: Tap the dropdown menu next to the output unit button to select the unit of measurement for the converted value.
+1. **Inicie a aplicação**: Abra a aplicação no seu dispositivo Android ou emulador.
 
-5. **View Result**: The converted value will be displayed below the dropdown menus with the selected output unit.
+2. **Valor de entrada**: Introduza o valor que pretende converter no campo de texto denominado "Introduza o valor".
 
-Here are some screenshots showing the user interface of the application:
+3. **Selecionar unidade de entrada**: Toque no menu suspenso junto ao botão da unidade de entrada para selecionar a unidade de medida para o valor de entrada.
 
-### Screenshot 1
-![Unit Converter Screen](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
+4. **Selecionar unidade de saída**: Toque no menu suspenso junto ao botão da unidade de saída para selecionar a unidade de medida para o valor convertido.
 
-### Screenshot 2
-![Dropdown Menu](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
+5. **Ver resultado**: O valor convertido será apresentado por baixo dos menus suspensos com a unidade de saída selecionada.
 
-### Screenshot 3
-![Converted Value_1](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
+Aqui estão algumas capturas de ecrã mostrando a interface do utilizador da aplicação:
 
-### Screenshot 4
-![Converted Value_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
+### Ecrã do conversor de unidades
+![Ecrã do conversor de unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
 
-### Screenshot 5
-![Converted Value_3](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
+### Menu suspenso
+![Menu suspenso](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
 
+### Valor convertido_1
+![Valor convertido_1](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
 
+### Valor convertido_2
+![Valor convertido_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
 
+### Valor convertido_3
+![Valor convertido_3](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
+
+### Ecrã DarkMode do conversor de unidades
+![Ecrã DarkMode do conversor de unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184308.png)
+
+### Ecrã DarkMode do conversor de unidades_2
+![Ecrã DarkMode do conversor de unidades_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184336.png)
+
+### Vazio_Histórico
+![Empty_Historic](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184351.png)
+
+### Histórico com valores convertidos
+![Histórico com valores convertidos](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184417.png)

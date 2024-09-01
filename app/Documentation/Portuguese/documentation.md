@@ -1,97 +1,123 @@
 # Documentação da MainActivity
 
-## Visão Geral
+## Visão geral
 
-A classe `MainActivity` é um componente central de um aplicativo Android escrito em Kotlin. Ela estende `ComponentActivity` e serve como ponto de entrada para o aplicativo. A função principal desta atividade é configurar a interface do usuário usando Jetpack Compose e aplicar um tema à interface.
+A classe `MainActivity` é um componente central de uma aplicação Android escrita em Kotlin. Estende `ComponentActivity` e serve como ponto de entrada para a aplicação. A principal função desta atividade é configurar a interface do utilizador utilizando o Jetpack Compose e aplicar um tema à IU.
 
-# Aplicativo de Conversor de Unidades
+# Aplicação conversor de unidades
 
-## Visão Geral
+## Visão geral
 
-Este código define uma interface de usuário Jetpack Compose para um aplicativo de conversor de unidades em Kotlin. Ele fornece uma interface para converter valores entre diferentes unidades de medida. O aplicativo permite que os usuários insiram um valor, selecionem unidades de entrada e saída a partir de menus suspensos e exibam o resultado convertido.
+Este código define uma UI do Jetpack Compose para uma aplicação de conversão de unidades em Kotlin. Fornece uma interface de utilizador para converter valores entre diferentes unidades de medida. A aplicação permite aos utilizadores introduzir um valor, selecionar unidades de entrada e saída nos menus suspensos e exibir o resultado convertido.
 
-## Componentes Principais
+## Componentes principais
 
-1. **Imports:**
-    - As bibliotecas necessárias do Jetpack Compose e Material3 são importadas para facilitar o design e a interação da interface.
+1. **Importações:**
+- As bibliotecas Jetpack Compose e Material3 necessárias são importadas para facilitar o design e a interação da UI.
 
-2. **Função Composable:**
-    - **`@Composable`**: Esta anotação é usada para definir funções composables que podem ser usadas para construir elementos de interface no Jetpack Compose.
+2. **Função Combinável:**
+- **`@Composable`**: esta anotação é utilizada para definir funções que podem ser compostas e que podem ser utilizadas para criar elementos UI no Jetpack Compose.
 
 ## Função Composable: `UnitConverter`
 
-A principal função composable é `UnitConverter`, que encapsula toda a interface e lógica de conversão de unidades.
+A principal função que pode ser composta é `UnitConverter`, que encapsula toda a UI e lógica de conversão de unidades.
 
-### Gerenciamento de Estado
+### Gestão do Estado
 
-- **`inputValue`**: Armazena o valor inserido pelo usuário como uma `String`.
+- **`inputValue`**: Mantém o valor introduzido pelo utilizador como uma `String`.
 - **`outputValue`**: Armazena o resultado da conversão como uma `String`.
-- **`inputUnit`**: Controla a unidade selecionada pelo usuário para entrada.
-- **`outputUnit`**: Controla a unidade selecionada pelo usuário para saída.
+- **`inputUnit`**: rastreia a unidade selecionada pelo utilizador para entrada.
+- **`outputUnit`**: rastreia a unidade selecionada pelo utilizador para saída.
 - **`inputExpanded`**: Estado booleano para controlar a visibilidade do menu suspenso da unidade de entrada.
 - **`outputExpanded`**: Estado booleano para controlar a visibilidade do menu suspenso da unidade de saída.
-- **`outputUnitResult`**: Armazena a unidade de resultado que é exibida com o valor convertido.
-- **`conversionFactor`**: Representa o fator usado para converter o valor de entrada para metros.
-- **`outputConversionFactor`**: Representa o fator usado para converter de metros para a unidade de saída desejada.
+- **`outputUnitResult`**: Armazena a unidade de resultado que é apresentada com o valor convertido.
+- **`conversionFactor`**: Representa o fator utilizado para converter o valor de entrada em metros.
+- **`outputConversionFactor`**: Representa o fator utilizado para converter de metros para a unidade de saída desejada.
 
 ### Função: `convertUnits`
 
-- **Propósito**: Converte o valor de entrada para a unidade de saída desejada usando os fatores de conversão.
+- **Finalidade**: Converte o valor de entrada na unidade de saída desejada utilizando os fatores de conversão.
 - **Lógica**:
-    - Verifica se tanto a unidade de entrada quanto a de saída foram selecionadas.
-    - Se uma das unidades não for selecionada, define o valor de saída como "0.0".
-    - Caso contrário, realiza a conversão usando uma fórmula:
-    - Arredonda o resultado para duas casas decimais e atualiza `outputValue`.
+- Verifica se as unidades de entrada e saída estão selecionadas.
+- Se nenhuma das unidades for selecionada, o valor de saída será definido como "0,0".
+- Caso contrário, realiza a conversão através de uma fórmula:
+- Arredonda o resultado às duas casas decimais e actualiza `outputValue`.
 
-### Layout da Interface
+### Layout da IU
 
-- **Column**: Organiza os composables filhos verticalmente com alinhamento central.
-    - **Text**: Exibe o título "Conversor de Unidades" com estilização personalizada.
-    - **Spacer**: Adiciona espaço vertical entre os elementos da interface.
-    - **OutlinedTextField**: Permite que o usuário insira um valor.
-        - Personaliza as cores das bordas e lida com alterações de entrada.
-        - Chama `convertUnits` para atualizar o valor convertido a cada alteração na entrada.
-    - **Row**: Contém botões de seleção de unidades de entrada e saída.
-        - **Box**: Contém um `Button` e um `DropdownMenu` para selecionar as unidades de entrada.
-            - **DropdownMenuItem**: Cada item representa uma unidade de medida. Clicar em um item define a unidade de entrada e seu fator de conversão.
-        - **Spacer**: Adiciona espaço horizontal entre os seletores de unidade de entrada e saída.
-        - **Box**: Contém um `Button` e um `DropdownMenu` para selecionar as unidades de saída.
-            - **DropdownMenuItem**: Cada item representa uma unidade de medida. Clicar em um item define a unidade de saída e seu fator de conversão, e aciona a conversão.
-    - **Text**: Exibe o valor convertido e a unidade de resultado.
+- **Coluna**: organiza os elementos filhos que podem ser compostos verticalmente com alinhamento central.
+- **Texto**: Apresenta o título "Unit Converter" com um estilo personalizado.
+- **Espaçador**: Adiciona espaço vertical entre os elementos da UI.
+- **OutlinedTextField**: permite ao utilizador introduzir um valor.
+- Personaliza as cores das margens e trata das alterações de entrada.
+- Chama `convertUnits` para actualizar o valor convertido em cada alteração de entrada.
+- **Linha**: Contém botões de seleção da unidade de entrada e saída.
+- **Box**: Contém um `Button` e `DropdownMenu` para seleccionar as unidades de entrada.
+- **DropdownMenuItem**: cada item representa uma unidade de medida. Clicar num item define a unidade de entrada e o seu fator de conversão.
+- **Espaçador**: Adiciona espaço horizontal entre os seletores de unidades de entrada e de saída.
+- **Box**: Contém um `Button` e `DropdownMenu` para seleccionar as unidades de saída.
+- **DropdownMenuItem**: cada item representa uma unidade de medida. Clicar num item define a unidade de saída e o seu fator de conversão e desencadeia a conversão.
+- **Texto**: Apresenta o valor convertido e a unidade de resultado.
+
+A UI ajusta-se dinamicamente ao modo claro ou escuro do dispositivo, garantindo que a interface da aplicação é legível e visualmente apelativa em ambos os temas.
 
 ### Visualização
 
-- **`UnitConverterPreview`**: Uma função de visualização anotada com `@Preview`, que permite visualizar o composable `UnitConverter` na IDE com um fundo de amostra.
+- **`UnitConverterPreview`**: Uma função de visualização anotada com `@Preview`, que permite visualizar o `UnitConverter` que pode ser composto no IDE com um fundo de exemplo.
 
-### TODO
+#### Implementação da caixa de diálogo Histórico
 
-- **Valores Convertidos Histórico**: Há um comentário de placeholder indicando a intenção de adicionar funcionalidade para armazenar e exibir valores de conversão históricos.
+1. **Ver histórico**: Quando o utilizador pressiona o botão para mostrar o histórico, aparece um `AlertDialog`, listando todas as entradas de conversão anteriores. A caixa de diálogo contém dois botões:
+- **Botão Fechar**: Fecha a caixa de diálogo sem efetuar alterações.
+- **Botão Limpar histórico**: Limpa todas as entradas do histórico e fecha a caixa de diálogo.
 
-## Uso
+2. **Tratar histórico vazio**: Se o histórico estiver vazio, será mostrado um `AlertDialog` diferente para informar o utilizador de que não existem entradas. Esta caixa de diálogo fecha automaticamente após um pequeno atraso.
 
-1. **Iniciar o Aplicativo**: Abra o aplicativo em seu dispositivo Android ou emulador.
+Aqui está o trecho de implementação para mostrar e gerir a caixa de diálogo do histórico:
 
-2. **Inserir Valor**: Insira o valor que você deseja converter no campo de texto rotulado como "Enter the value" (Digite o valor).
+```kotlin
+if (showHistoryDialog) {
+    if (conversionHistory.isEmpty()) {
+        AlertDialog(
+            onDismissRequest = { showHistoryDialog = false },
+            title = { Text(text = "No History") },
+            text = { Text("The conversion history is empty.") },
+            confirmButton = {
+                TextButton(onClick = { showHistoryDialog = false }) {
+                    Text("Close")
+                }
+            }
+        )
+        LaunchedEffect(Unit) {
+            kotlinx.coroutines.delay(3000) // Waits 3 seconds
+            showHistoryDialog = false // Closes the dialog
+        }
+    } else {
+        AlertDialog(
+            onDismissRequest = { showHistoryDialog = false },
+            title = { Text(text = "Conversion History") },
+            text = {
+                Column {
+                    conversionHistory.forEach { entry -> Text(entry) }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showHistoryDialog = false }) {
+                    Text("Close")
 
-3. **Selecionar Unidade de Entrada**: Toque no menu suspenso ao lado do botão de unidade de entrada para selecionar a unidade de medida para o valor de entrada.
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    conversionHistory.clear()
+                    showHistoryDialog = false
+                }) {
+                    Text("Clear History")
+                }
+            }
+        )
+    }
+}
+```
 
-4. **Selecionar Unidade de Saída**: Toque no menu suspenso ao lado do botão de unidade de saída para selecionar a unidade de medida para o valor convertido.
 
-5. **Ver Resultado**: O valor convertido será exibido abaixo dos menus suspensos com a unidade de saída selecionada.
-
-Aqui estão algumas capturas de tela mostrando a interface do usuário do aplicativo:
-
-### Captura de Tela 1
-![Tela do Conversor de Unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
-
-### Captura de Tela 2
-![Menu Suspenso](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
-
-### Captura de Tela 3
-![Valor Convertido_1](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
-
-### Captura de Tela 4
-![Valor Convertido_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
-
-### Captura de Tela 5
-![Valor Convertido_3](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
