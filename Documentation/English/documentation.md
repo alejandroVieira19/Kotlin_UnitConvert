@@ -120,43 +120,44 @@ if (showHistoryDialog) {
 }
 ```
 
-## Uso
+## Usage
 
-1. **Inicie a aplicação**: Abra a aplicação no seu dispositivo Android ou emulador.
+1. **Launch the Application**: Open the application on your Android device or emulator.
 
-2. **Valor de entrada**: Introduza o valor que pretende converter no campo de texto denominado "Introduza o valor".
+2. **Input Value**: Enter the value you want to convert in the text field labeled "Enter the value".
 
-3. **Selecionar unidade de entrada**: Toque no menu suspenso junto ao botão da unidade de entrada para selecionar a unidade de medida para o valor de entrada.
+3. **Select Input Unit**: Tap the dropdown menu next to the input unit button to select the unit of measurement for the input value.
 
-4. **Selecionar unidade de saída**: Toque no menu suspenso junto ao botão da unidade de saída para selecionar a unidade de medida para o valor convertido.
+4. **Select Output Unit**: Tap the dropdown menu next to the output unit button to select the unit of measurement for the converted value.
 
-5. **Ver resultado**: O valor convertido será apresentado por baixo dos menus suspensos com a unidade de saída selecionada.
+5. **View Result**: The converted value will be displayed below the dropdown menus with the selected output unit.
 
-Aqui estão algumas capturas de ecrã mostrando a interface do utilizador da aplicação:
+Here are some screenshots showing the user interface of the application:
 
-### Ecrã do conversor de unidades
-![Ecrã do conversor de unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
+### Unit Converter Screen
+![Unit Converter Screen](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
 
-### Menu suspenso
-![Menu suspenso](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
+### Dropdown Menu
+![Dropdown Menu](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
 
-### Valor convertido_1
-![Valor convertido_1](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
+### Converted Value_1
+![Converted Value_1](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
 
-### Valor convertido_2
-![Valor convertido_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
+### Converted Value_2
+![Converted Value_2](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
 
-### Valor convertido_3
-![Valor convertido_3](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
+### Converted Value_3
+![Converted Value_3](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
 
-### Ecrã DarkMode do conversor de unidades
-![Ecrã DarkMode do conversor de unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184308.png)
+### Unit Converter DarkMode Screen
+![Unit Converter DarkMode Screen](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184308.png)
 
-### Ecrã DarkMode do conversor de unidades_2
-![Ecrã DarkMode do conversor de unidades_2](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184336.png)
+### Unit Converter DarkMode Screen_2
+![Unit Converter DarkMode Screen_2](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184336.png)
 
-### Vazio_Histórico
-![Empty_Historic](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184351.png)
+### Empty_Historic
+![Empty_Historic](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184351.png)
 
-### Histórico com valores convertidos
-![Histórico com valores convertidos](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184417.png)
+### Historic with converted Values
+![Historic with converted Values](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184417.png)
+

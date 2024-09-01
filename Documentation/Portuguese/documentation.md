@@ -120,4 +120,43 @@ if (showHistoryDialog) {
 }
 ```
 
+## Uso
 
+1. **Inicie a aplicação**: Abra a aplicação no seu dispositivo Android ou emulador.
+
+2. **Valor de entrada**: Introduza o valor que pretende converter no campo de texto denominado "Introduza o valor".
+
+3. **Selecionar unidade de entrada**: Toque no menu suspenso junto ao botão da unidade de entrada para selecionar a unidade de medida para o valor de entrada.
+
+4. **Selecionar unidade de saída**: Toque no menu suspenso junto ao botão da unidade de saída para selecionar a unidade de medida para o valor convertido.
+
+5. **Ver resultado**: O valor convertido será apresentado por baixo dos menus suspensos com a unidade de saída selecionada.
+
+Aqui estão algumas capturas de ecrã mostrando a interface do utilizador da aplicação:
+
+### Ecrã do conversor de unidades
+![Ecrã do conversor de unidades](/src/App_Images/Captura%20de%20ecrã%202024-09-01%20143939.png)
+
+### Menu suspenso
+![Menu suspenso](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144141.png)
+
+### Valor convertido_1
+![Valor convertido_1](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144222.png)
+
+### Valor convertido_2
+![Valor convertido_2](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144237.png)
+
+### Valor convertido_3
+![Valor convertido_3](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20144305.png)
+
+### Ecrã DarkMode do conversor de unidades
+![Ecrã DarkMode do conversor de unidades](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184308.png)
+
+### Ecrã DarkMode do conversor de unidades_2
+![Ecrã DarkMode do conversor de unidades_2](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184336.png)
+
+### Vazio_Histórico
+![Empty_Historic](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184351.png)
+
+### Histórico com valores convertidos
+![Histórico com valores convertidos](/app/src/App_Images/Captura%20de%20ecrã%202024-09-01%20184417.png)
